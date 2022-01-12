@@ -34,12 +34,11 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include <ti/devices/msp432p4xx/inc/msp.h>
+#include <msp432p4111.h>
 
 /* Define to ensure that our current MSP432 has the LCD_F module. This
     definition is included in the device specific header file */
 #ifdef __MCU_HAS_LCD_F__
-
 //*****************************************************************************
 //
 //! \addtogroup lcd_f_api

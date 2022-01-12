@@ -30,8 +30,8 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * --/COPYRIGHT--*/
 #include <stdint.h>
-#include <ti/devices/msp432p4xx/driverlib/lcd_f.h>
-#include <ti/devices/msp432p4xx/driverlib/interrupt.h>
+#include <lcd_launchpad_f.h>
+#include <interrupt.h>
 
 /* Define to ensure that our current MSP432 has the LCD_F module. This
     definition is included in the device specific header file */
