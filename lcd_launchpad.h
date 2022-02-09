@@ -148,3 +148,37 @@ static void textMem(__IO uint8_t *mem, char *s) {
 static void showText(char *s) { textMem(LCD_F->M, s); }
 
 static void blinkText(char *s) { textMem(LCD_F->BM, s); }
+
+LCD_F_Config lcdConf = {.clockSource = LCD_F_CLOCKSOURCE_ACLK,
+                        .clockDivider = LCD_F_CLOCKDIVIDER_32,
+                        .clockPrescaler = LCD_F_CLOCKPRESCALER_1,
+                        .muxRate = LCD_F_4_MUX,
+                        .waveforms = LCD_F_STANDARD_WAVEFORMS,
+                        .segments = LCD_F_SEGMENTS_ENABLED};
+
+static void initializeLCD(void) {
+  // Pin assignments
+  P3->SEL1 |= 0xF2;
+  P6->SEL1 |= 0x0C;
+  P7->SEL1 |= 0xF0;
+  P8->SEL1 |= 0xFC;
+  P9->SEL1 |= 0xFF;
+  P10->SEL1 |= 0x3F;
+
+  LCD_F_initModule(&lcdConf);
+
+  /* Clearing out all memory */
+  LCD_F_clearAllMemory();
+  LCD_F_clearAllBlinkingMemory();
+
+  LCD_F_setPinsAsLCDFunction(LCD_F_SEGMENT_LINE_0, LCD_F_SEGMENT_LINE_3);
+  LCD_F_setPinAsLCDFunction(LCD_F_SEGMENT_LINE_6);
+  LCD_F_setPinsAsLCDFunction(LCD_F_SEGMENT_LINE_16, LCD_F_SEGMENT_LINE_19);
+  LCD_F_setPinsAsLCDFunction(LCD_F_SEGMENT_LINE_26, LCD_F_SEGMENT_LINE_47);
+  LCD_F_setPinAsCOM(LCD_F_SEGMENT_LINE_26, LCD_F_MEMORY_COM0);
+  LCD_F_setPinAsCOM(LCD_F_SEGMENT_LINE_27, LCD_F_MEMORY_COM1);
+  LCD_F_setPinAsCOM(LCD_F_SEGMENT_LINE_6, LCD_F_MEMORY_COM2);
+  LCD_F_setPinAsCOM(LCD_F_SEGMENT_LINE_3, LCD_F_MEMORY_COM3);
+
+  LCD_F_turnOn();
+}
