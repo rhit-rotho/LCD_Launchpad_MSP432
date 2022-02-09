@@ -119,15 +119,15 @@ static void memChar(__IO uint8_t *mem, char c, int position) {
   uint8_t ii;
   if (c == ' ') {
     for (ii = 0; ii < 4; ii++) {
-      mem[position + ii] |= 0x00;
+      mem[position + ii] = 0x00;
     }
   } else if (c >= '0' && c <= '9') {
     for (ii = 0; ii < 4; ii++) {
-      mem[position + ii] |= digit[c - 48][ii];
+      mem[position + ii] = digit[c - 48][ii];
     }
   } else if (c >= 'A' && c <= 'Z') {
     for (ii = 0; ii < 4; ii++) {
-      mem[position + ii] |= alphabetBig[c - 65][ii];
+      mem[position + ii] = alphabetBig[c - 65][ii];
     }
   } else {
     mem[position] = 0xFF;
