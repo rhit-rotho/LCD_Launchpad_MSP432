@@ -50,7 +50,7 @@
  *            |                 |       TI LCD
  *******************************************************************************/
 /* DriverLib Includes */
-#include <lcd_launchpad_f.h>
+#include "utilities/lcd_launchpad_f.h"
 
 /* Standard Includes */
 #include <stdbool.h>
@@ -156,7 +156,7 @@ LCD_F_Config lcdConf = {.clockSource = LCD_F_CLOCKSOURCE_ACLK,
                         .waveforms = LCD_F_STANDARD_WAVEFORMS,
                         .segments = LCD_F_SEGMENTS_ENABLED};
 
-static void initializeLCD(void) {
+static void initLCD(void) {
   // Pin assignments
   P3->SEL1 |= 0xF2;
   P6->SEL1 |= 0x0C;
